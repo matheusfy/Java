@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class App {
+public class Crud {
     private final String url = "jdbc:postgresql://localhost/";
 
     private final String db_name = "agenda";
