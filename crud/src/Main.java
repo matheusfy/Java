@@ -7,7 +7,17 @@ public class Main {
     public static void main(String[] args) {
 
         App app = new App();
-        app.connect();
+        try {
+            Connection connection_db  = app.connect();
+
+            // se não estourar tenta fazer um add
+
+            app.CreateTable(connection_db, "contatos");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         System.out.println(" finalizando ");
     }
 }
