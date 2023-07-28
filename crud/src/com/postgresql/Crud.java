@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class Crud {
     private final String url = "jdbc:postgresql://localhost/";
 
-    private final String db_name = "agenda";
+    private final String db_name = "contato";
     private final String user = "postgres";
     private final String password = "nkrevg32";
 
@@ -38,11 +38,11 @@ public class Crud {
                     "id Serial primary key,\n" +
                     "nome varchar,\n" +
                     "idade int,\n" +
-                    "dataCadastro date\n" +
+                    "datacadastro date\n" +
                     ")";
             statement = connection_db.createStatement();
             statement.executeUpdate(query);
-            System.out.println("Tabela "+ table_name + " criado com sucesso!");
+            System.out.println("Tabela " + table_name + " criado com sucesso!");
         } catch (Exception e){
             System.out.println("Fail to create table: "+ e);
             return false;
