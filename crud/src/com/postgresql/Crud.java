@@ -56,8 +56,8 @@ public class Crud {
         Statement statement;
 
         try {
-            String query= "insert into " + registro;
-            statement=connection_db.createStatement();
+            String query = "insert into " + registro;
+            statement    = connection_db.createStatement();
             statement.executeUpdate(query);
             System.out.println("Inserted successfully!");
         } catch (Exception e){
@@ -68,4 +68,21 @@ public class Crud {
         return true;
     }
 
+
+    public Boolean Update(Connection connection_db, String registro){
+
+        Statement statement;
+
+        try {
+            String query = "update into " + registro;
+            statement    = connection_db.createStatement();
+            statement.executeUpdate(query);
+            System.out.println("Inserted successfully!");
+        } catch (Exception e){
+            System.out.println(" Fail to update Table. "+ e);
+            return false;
+        }
+
+        return true;
+    }
 }
