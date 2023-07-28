@@ -39,9 +39,24 @@ public class Main {
                 System.out.println("Erro ao tentar salvar no banco. "+ e);
             }
 
+            /**** Pegando lista de contatos da tabela do banco *********/
+            try{
+                DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+                String strDate;
+                Contatos = crud.GetList(connection_db, table_name);
+
+                for (Contato contato: Contatos){
+                    strDate = dateFormat.format(contato.getData_cadastro());
+                    System.out.println(contato.getNome() + " " + Integer.toString(contato.getIdade()) + " " + strDate);
+                }
+
+            } catch (Exception e) {
+
+            }
         } catch (Exception e) {
           System.out.println("Connection fail. " + e);
         }
+
 
 
         System.out.println(" finalizando ");
