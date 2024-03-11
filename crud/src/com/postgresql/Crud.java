@@ -1,10 +1,10 @@
 package com.postgresql;
 
+import Classes.Contato;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Crud {
     private final String url = "jdbc:postgresql://localhost/";
@@ -58,7 +58,9 @@ public class Crud {
         try {
             String query = "insert into " + registro;
             statement    = connection_db.createStatement();
+
             statement.executeUpdate(query);
+
             System.out.println("Inserted successfully!");
         } catch (Exception e){
             System.out.println(" Fail to insert to Table. "+ e);
@@ -85,4 +87,37 @@ public class Crud {
 
         return true;
     }
+
+    public List<Contato> GetList(Connection connection_db, String table_name){
+        List<Contato> Contatos = new ArrayList<Contato>();
+
+        Statement statement;
+        String    table;
+        ResultSet sql_result;
+        String    nome;
+        int       idade;
+        Date      datacadastro;
+
+
+        try{
+            String query = "select * from "+ table_name;
+            statement    = connection_db.createStatement();
+
+            sql_result = statement.executeQuery(query);
+            while(sql_result.next()){
+                nome  = sql_result.getString("nome");
+                idade = sql_result.getInt("idade");
+                datacadastro = sql_result.getDate("datacadastro");
+
+                Contato contato = new Contato(nome, idade,datacadastro);
+                Contatos.add(contato);
+            }
+        } catch (SQLException sql){
+            System.out.println(sql);
+        }
+
+        return Contatos;
+    }
+
+
 }
